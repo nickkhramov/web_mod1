@@ -67,20 +67,35 @@ export default {
     },
     createName() {
       const newName = `${this.firstName} ${this.lastName}`;
-      this.names.push(newName);
+      if (!this.firstName || !this.lastName) {
+        alert("Please type both name and surname.")
+      } else {
+        this.names.push(newName);
+        this.firstName = ''
+        this.lastName = ''
+        this.selectName = !this.selectName
+      }
+
     },
     updateName() {
       const newName = `${this.firstName} ${this.lastName}`;
       const index = this.names.indexOf(this.selectName);
-      if (index !== -1) {
-        this.names[index] = newName;
+      if (index !== -1 && !this.firstName || !this.lastName) {
+        alert("Please type both name and surname.")
+      } else {
+        this.$set(this.names, index, newName);
+        this.firstName = ''
+        this.lastName = ''
+        this.selectName = !this.selectName
       }
     },
     deleteName() {
       const index = this.names.indexOf(this.selectName);
       if (index !== -1) {
         this.names.splice(index, 1);
-        this.selectName = '';
+        this.firstName = ''
+        this.lastName = ''
+        this.selectName = !this.selectName
     }
   }
 }
