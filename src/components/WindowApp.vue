@@ -11,7 +11,7 @@
     <div class="bottom">
       <div class="search">
         <label class="search__text" for="inputSearch">Filter prefix: </label>
-        <input type="search" class="search__input" id="inputSearch" v-model="prefix" @input="searchName" />
+        <input type="search" class="search__input" id="inputSearch" v-model="query" @input="searchName" />
       </div>
 
       <div class="table">
@@ -47,7 +47,7 @@
 export default {
   data() {
     return {
-      prefix: "",
+      query: "",
       firstName: "",
       lastName: "",
       selectName: "",
@@ -57,7 +57,7 @@ export default {
 
   computed: {
     filterNames() {
-      return this.names.filter(name => name.startsWith(this.prefix))
+      return this.names.filter(name => name.toLowerCase().startsWith(this.query))
     }
   },
 
